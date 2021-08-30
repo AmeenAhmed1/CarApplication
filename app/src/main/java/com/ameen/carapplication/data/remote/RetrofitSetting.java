@@ -20,7 +20,6 @@ public class RetrofitSetting {
             retrofit = new Retrofit.Builder()
                     .baseUrl("https://demo1286023.mockable.io/api/v1")
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                     .build();
         }
         return retrofit;

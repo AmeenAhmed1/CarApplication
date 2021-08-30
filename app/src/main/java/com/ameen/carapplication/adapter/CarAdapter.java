@@ -65,7 +65,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
         }
     }
 
-    public void updateList(ArrayList<CarModule> carList){
+    public void updateList(ArrayList<CarModule> carList) {
+        carsList.clear();
         carsList.addAll(carList);
         notifyDataSetChanged();
     }

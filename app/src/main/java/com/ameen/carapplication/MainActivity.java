@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.ameen.carapplication.adapter.CarAdapter;
 import com.ameen.carapplication.data.CarModule;
@@ -19,9 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mainBinding;
     private CarAdapter carAdapter;
     private ArrayList<CarModule> carList;
-    private ApiService apiService;
     private MainViewModel mainViewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +29,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(mainBinding.getRoot());
 
         initView();
+        initViewModel();
     }
 
     private void initView() {
 
+        carList = new ArrayList<>();
+        carAdapter = new CarAdapter(this, carList);
+
+        mainBinding.carRecycler.setAdapter(carAdapter);
+        mainBinding.carRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        mainBinding.swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeHandler();
+            }
+        });
+
+    }
+
+    private void initViewModel(){
         mainViewModel = new MainViewModel();
         mainViewModel.getCars();
         mainViewModel.carResponse.observe(this, new Observer<ArrayList<CarModule>>() {
@@ -42,14 +58,9 @@ public class MainActivity extends AppCompatActivity {
                 carAdapter.updateList(carModules);
             }
         });
+    }
 
-        apiService = RetrofitSetting.getRetrofitClient().create(ApiService.class);
-
-        carList = new ArrayList<>();
-        carAdapter = new CarAdapter(this, carList);
-
-        mainBinding.carRecycler.setAdapter(carAdapter);
-        mainBinding.carRecycler.setLayoutManager(new LinearLayoutManager(this));
-
+    private void swipeHandler(){
+        mainViewModel.getCars();
     }
 }
