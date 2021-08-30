@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_16">
+
+    <ImageView
+        android:id="@+id/carImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/carBrandTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/brand_name"
+        android:theme="@style/itemTextTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toEndOf="@id/carImageView"
+        app:layout_constraintTop_toTopOf="@id/carImageView" />
+
+    <TextView
+        android:id="@+id/isUsedTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="@string/used"
+        android:theme="@style/itemTextTheme"
+        app:layout_constraintEnd_toEndOf="@id/carBrandTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/carBrandTextView"
+        app:layout_constraintTop_toBottomOf="@id/carBrandTextView" />
+
+    <TextView
+        android:id="@+id/constructionYearTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="@string/year"
+        android:theme="@style/itemTextTheme"
+        app:layout_constraintEnd_toEndOf="@id/isUsedTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/isUsedTextView"
+        app:layout_constraintTop_toBottomOf="@id/isUsedTextView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
