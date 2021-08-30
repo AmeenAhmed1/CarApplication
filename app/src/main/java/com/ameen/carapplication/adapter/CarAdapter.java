@@ -38,7 +38,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        CarModule carModule = carList.get(position);
+        CarModule carModule = carsList.get(position);
 
         holder.carBinding.carBrandTextView.setText(carModule.getBrand());
         holder.carBinding.isUsedTextView.setText(carModule.isUsed() ? "New" : "Used");
@@ -52,7 +52,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return carList.size();
+        return carsList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

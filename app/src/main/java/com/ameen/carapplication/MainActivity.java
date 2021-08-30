@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.ameen.carapplication.adapter.CarAdapter;
 import com.ameen.carapplication.data.CarModule;
 import com.ameen.carapplication.data.remote.ApiService;
 import com.ameen.carapplication.data.remote.RetrofitSetting;
@@ -35,15 +36,16 @@ public class MainActivity extends AppCompatActivity {
 
         mainViewModel = new MainViewModel();
         mainViewModel.getCars();
-        mainViewModel.carResponse.observe(this, new Observer<CarModule>() {
+        mainViewModel.carResponse.observe(this, new Observer<ArrayList<CarModule>>() {
             @Override
-            public void onChanged(CarModule carModule) {
-                carAdapter.updateList(carModule);
+            public void onChanged(ArrayList<CarModule> carModules) {
+                carAdapter.updateList(carModules);
             }
         });
 
         apiService = RetrofitSetting.getRetrofitClient().create(ApiService.class);
 
+        carList = new ArrayList<>();
         carAdapter = new CarAdapter(this, carList);
 
         mainBinding.carRecycler.setAdapter(carAdapter);

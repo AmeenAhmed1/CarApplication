@@ -2,7 +2,8 @@ package com.ameen.carapplication.data.remote;
 
 import com.ameen.carapplication.data.CarModule;
 
-import io.reactivex.rxjava3.core.Observable;
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -16,6 +17,6 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     @GET("/cars")
-    Call<CarModule> getCars(@Query("page") int pageNumber);
+    Call<ArrayList<CarModule>> getCars(@Query("page") int pageNumber);
 
 }
